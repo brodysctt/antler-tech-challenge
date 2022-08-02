@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from "react";
 import { useStore } from "@lib/zustand";
 import { Stack, TextField, Typography } from "@mui/material";
+import { IndustriesSelect } from "components";
 
 export const OnboardingSteps: FC<{ step: number }> = ({ step }) => {
   const expertise = useStore((store) => store.expertise);
@@ -36,7 +37,7 @@ export const OnboardingSteps: FC<{ step: number }> = ({ step }) => {
       ),
     },
     {
-      body: <Typography>Select Industries</Typography>,
+      body: <IndustriesSelect />,
     },
     {
       body: <Typography>Company details</Typography>,
