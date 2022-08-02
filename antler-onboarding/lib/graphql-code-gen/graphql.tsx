@@ -1123,12 +1123,54 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+export type GetApplicantByEmailQueryVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type GetApplicantByEmailQuery = { __typename?: 'query_root', successful_applicants: Array<{ __typename?: 'successful_applicants', email: string }> };
+
 export type GetApplicantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetApplicantsQuery = { __typename?: 'query_root', successful_applicants: Array<{ __typename?: 'successful_applicants', email: string }> };
 
 
+export const GetApplicantByEmailDocument = gql`
+    query GetApplicantByEmail($email: String!) {
+  successful_applicants(where: {email: {_eq: $email}}) {
+    email
+  }
+}
+    `;
+
+/**
+ * __useGetApplicantByEmailQuery__
+ *
+ * To run a query within a React component, call `useGetApplicantByEmailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetApplicantByEmailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetApplicantByEmailQuery({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useGetApplicantByEmailQuery(baseOptions: Apollo.QueryHookOptions<GetApplicantByEmailQuery, GetApplicantByEmailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetApplicantByEmailQuery, GetApplicantByEmailQueryVariables>(GetApplicantByEmailDocument, options);
+      }
+export function useGetApplicantByEmailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetApplicantByEmailQuery, GetApplicantByEmailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetApplicantByEmailQuery, GetApplicantByEmailQueryVariables>(GetApplicantByEmailDocument, options);
+        }
+export type GetApplicantByEmailQueryHookResult = ReturnType<typeof useGetApplicantByEmailQuery>;
+export type GetApplicantByEmailLazyQueryHookResult = ReturnType<typeof useGetApplicantByEmailLazyQuery>;
+export type GetApplicantByEmailQueryResult = Apollo.QueryResult<GetApplicantByEmailQuery, GetApplicantByEmailQueryVariables>;
 export const GetApplicantsDocument = gql`
     query GetApplicants {
   successful_applicants {
