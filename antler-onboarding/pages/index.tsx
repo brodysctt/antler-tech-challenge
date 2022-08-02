@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useQuery, gql } from "@apollo/client";
 import { Typography } from "@mui/material";
+import { GetApplicantsQuery } from "@lib/graphql-code-gen/graphql";
 
 const GET_APPLICANTS = gql`
   query GetApplicants {
@@ -11,7 +12,7 @@ const GET_APPLICANTS = gql`
 `;
 
 const Home: NextPage = () => {
-  const { data, error } = useQuery(GET_APPLICANTS);
+  const { data, error } = useQuery<GetApplicantsQuery>(GET_APPLICANTS);
   if (error) console.error(error);
   if (!data) return null;
   const { successful_applicants: applicants } = data;
