@@ -1,9 +1,26 @@
 - table:
     schema: public
     name: companies
+  array_relationships:
+    - name: company_can_have_multiple_founders
+      using:
+        manual_configuration:
+          remote_table:
+            schema: public
+            name: users
+          insertion_order: null
+          column_mapping:
+            founders: id
 - table:
     schema: public
     name: successful_applicants
 - table:
     schema: public
     name: users
+  object_relationships:
+    - name: company
+      using:
+        foreign_key_constraint_on: company_id
+    - name: successful_applicant
+      using:
+        foreign_key_constraint_on: application_id
