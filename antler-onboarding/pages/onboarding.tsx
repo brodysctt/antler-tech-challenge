@@ -7,12 +7,14 @@ const Onboarding: NextPage = () => {
   const onboardingStep = useStore((store) => store.onboardingStep);
   const incrementStep = useStore((store) => store.incrementStep);
   const decrementStep = useStore((store) => store.decrementStep);
+  const expertise = useStore((store) => store.expertise);
+  const linkedIn = useStore((store) => store.linkedIn);
+  const industries = useStore((store) => store.industries);
 
-  // TODO: Update the conditions for advancing to the next step
   const steps: Array<[string, boolean | null]> = [
-    ["Experience", true],
-    ["Industries", true],
-    ["Company", true],
+    ["Experience", !!expertise && !!linkedIn],
+    ["Industries", !!industries.length],
+    ["Company", null], // TODO: Update logic for final step
   ];
   const [, isComplete] = steps[onboardingStep];
 
