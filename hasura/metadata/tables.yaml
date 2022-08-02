@@ -1,3 +1,9 @@
 - table:
     schema: public
+    name: companies
+- table:
+    schema: public
     name: successful_applicants
+- table:
+    schema: public
+    name: users
