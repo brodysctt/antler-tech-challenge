@@ -7,6 +7,9 @@ interface Store {
   expertise: string;
   linkedIn: string;
   industries: string[];
+  companyName: string;
+  companySize: number;
+  companyFunding: number;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   incrementStep: () => void;
@@ -15,6 +18,9 @@ interface Store {
   setLinkedIn: (linkedIn: string) => void;
   addIndustry: (industry: string) => void;
   removeIndustry: (industry: string) => void;
+  setCompanyName: (companyName: string) => void;
+  setCompanySize: (companySize: number) => void;
+  setCompanyFunding: (companyFunding: number) => void;
 }
 
 export const useStore = create<Store>((set) => ({
@@ -24,6 +30,9 @@ export const useStore = create<Store>((set) => ({
   expertise: "",
   linkedIn: "",
   industries: [],
+  companyName: "",
+  companySize: 0,
+  companyFunding: 0,
   setEmail: (email: string) => set(() => ({ email })),
   setPassword: (password: string) => set(() => ({ password })),
   incrementStep: () =>
@@ -42,8 +51,12 @@ export const useStore = create<Store>((set) => ({
       industries: [...store.industries, industry],
     })),
   removeIndustry: (industry: string) =>
-    set((state) => ({
-      ...state,
-      industries: state.industries.filter((i) => i !== industry),
+    set((store) => ({
+      ...store,
+      industries: store.industries.filter((i) => i !== industry),
     })),
+  setCompanyName: (companyName: string) => set(() => ({ companyName })),
+  setCompanySize: (companySize: number) => set(() => ({ companySize })),
+  setCompanyFunding: (companyFunding: number) =>
+    set(() => ({ companyFunding })),
 }));
